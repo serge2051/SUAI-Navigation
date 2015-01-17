@@ -1,2 +1,2 @@
 # SUAI_Navigation
-nabigation in the SUAI by Boris Sedov and Pakharev Serge.
+navigation in the SUAI by Boris Sedov and Pakharev Serge.
