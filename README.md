@@ -1,3 +1,6 @@
+
+[![Javascript](https://badges.frapsoft.com/javascript/code/javascript.svg?v=101)](https://github.com/ellerbrock/javascript-badges/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # SUAI Navigation
 Navigation in the SUAI(guap.ru) by Sergey Paharev, Boris Sedov and Victor Volkov.
 
