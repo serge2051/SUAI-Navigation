@@ -1,2 +1,4 @@
-# SUAI_Navigation
-navigation in the SUAI by Boris Sedov and Pakharev Serge.
+# SUAI Navigation
+Navigation in the SUAI(guap.ru) by Sergey Paharev, Boris Sedov and Victor Volkov.
+
+Web version contains schemes for corpus of Saint-Petersburg State University of Aerospace Instrumentation(SUAI) at Bolshay Morskaya str., 67A with additional information about all faculties and main departments. Scheme(map) based on SVG technology to support interaction with users.
