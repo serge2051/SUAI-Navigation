@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+	<head>
+		<meta name='viewport' content="width=device-width, initial-scale=1.0, user-scalable=0, height=device-height, maximum-scale=1.0, minimum-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="keywords" content="Навигация ГУАП, Спутник ГУАП, ГУАП найти аудиторию, Sputnik SUAI">
+		<meta name="description" content="Навигация по корпусам ГУАП для студентов, абитуриентов и работников университета">
+		<meta name="author" content="Сергей Пахарев, Борис Седов(дизайн карт)">
+		<meta name="robots" content="noarchive"/>
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+
+		<link rel="stylesheet" type="text/css" href= "css/mainLoad.css"/>
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+		<!-- CSS -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+		<title>Спутник ГУАП|Навигация</title>
+
+	</head>
+	<body class="text" onkeydown="HandleKeyPressed()">
+
+		<div id="preloader">
+			<div class="contentBar_load">
+				<div id="block_1_load" class="barlittle_load"></div>
+				<div id="block_2_load" class="barlittle_load"></div>
+				<div id="block_3_load" class="barlittle_load"></div>
+				<div id="block_4_load" class="barlittle_load"></div>
+				<div id="block_5_load" class="barlittle_load"></div>
+			</div>
+		</div>
+
+		<div class="navbar-default navbar-fixed-top" id="block_menu">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed hidden-xs hidden-sm" data-toggle="collapse" data-target="#navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://sputnik.guap.ru">
+					<img class="logo-2" src="resources/icons/sputnik_m.png" alt="LOGO_white" style="max-height:40px">
+					<img class="logo-1" src="resources/icons/sputnik_m.png" alt="LOGO_blue" style="max-height:40px">
+				</a>
+			</div>
+
+			<nav class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav navbar-left col-md-10 hidden-xs hidden-sm" id="top-nav">
+					<li class="current" style="width: 40%;">
+						<form class="navbar-form" onsubmit="event.preventDefault(); FindAudDesktop(true); return false;" style="margin:0;width:90%;display:inline-block;">
+							<div class="input-group" style="width: 100%;">
+								<div class="form-input-material" >
+									<label>
+										<input class="clearable" autocomplete="off" type="text" required id="input_aud_dstRoomBox_d">
+										<span class="placeholder">Аудитория</span>
+									</label>
+									<p id="validError_audDesktop_dst" class="validationError">Аудитория не найдена</p>
+								</div>
+								<span class="input-group-btn" style="right: 0;width: 1%;">
+									<button class="btn btn-link" type="submit" id='submit_aud_d'>
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</span>
+							</div>
+						</form>				
+					</li>
+					<li id="path-card" style="width:60%;">
+						<form class="navbar-form hidden-xs hidden-sm" onsubmit="event.preventDefault(); FindPathDesktop(true); return false;" style="margin:0;width:90%;display:inline-block;">
+							<div class="input-group" style="width: 100%;">
+								<div class="form-input-material" style="width: 49%; display:inline-block; padding-right:10px;">
+									<label>
+										<input class="clearable" type="text" autocomplete="off" required id="input_path_srcRoomBox_d">
+										<span class="placeholder">Откуда</span>
+									</label>
+									<p id="validError_pathDesktop_src" class="validationError">Аудитория не найдена</p>
+								</div>
+								<div class="form-input-material" style="width: 49%; display:inline-block; padding-left:10px;">
+									<label>
+										<input class="clearable" type="text" required autocomplete="off" id="input_path_dstRoomBox_d">
+										<span class="placeholder">Куда</span>
+									</label>
+									<p id="validError_pathDesktop_dst" class="validationError">Аудитория не найдена</p>
+								</div>
+								<span class="input-group-btn" style="left: 0;width: 1%" >
+									<button class="btn btn-link" type="submit" id='submit_path_d'>
+										<i class="glyphicon glyphicon-transfer"></i>
+									</button>
+								</span>
+							</div>					
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+		<div id="info-card" class="container col-xs-12 col-sm-4 col-md-4 col-lg-3" style="position:absolute;display:none;">
+			<div class="card card-inverse card-info">
+				<div style="overflow-y: auto;height: 100%;">
+					<div class="container" style="margin: 0;padding: 0;width:100%">
+						<div class="col-xs-2 vcenter" style="padding:0px">
+							<img id="info-card-icon" class="card-img-top center-block img-responsive" src="../images/guap-main.png" alt="info card Icon">
+						</div><!--
+						--><div class="col-xs-9 vcenter" style="padding:0px">
+							<h4 id="info-card-classnum" class="card-title mt-3">Аудитория</h4>
+						</div><!--
+						--><div class="col-xs-1 vcenter" style="padding:0px;vertical-align:top; color:#a0a0a0; padding-top:2px; padding-right: 2px;">
+							<span class="glyphicon glyphicon-remove pull-right" onclick="CloseInfoCard();"></span>
+						</div>
+					</div>
+					
+					<div class="card-block">
+						<div id="info-card-person-div">
+							<span class="glyphicon glyphicon-user card-text-icon"></span>
+							<p id="info-card-person-status" class="card-text-header"> - </p>
+							
+							<div style="display:block;">
+								<span class="glyphicon glyphicon-none card-text-icon"></span>
+								<p id="info-card-person" class="card-text-header"> - </p>
+							</div>
+						</div>
+						<div id="info-card-classphone-div" style="display:inline-block"> 
+							<span class="glyphicon glyphicon-phone card-text-icon"></span>
+							<p id="info-card-classphone" class="card-text-header"> - </p>
+							<span class="glyphicon glyphicon-none card-text-icon"></span>
+						</div>
+						<div id="info-card-classmail-div" style="display:inline-block">
+							<span class="glyphicon glyphicon-envelope card-text-icon"></span>
+							<a 	id="info-card-classmail" class="card-text-header"> - </a>
+							<span class="glyphicon glyphicon-none card-text-icon"></span>
+						</div>
+						<div id="info-card-classlink-div" style="display:inline-block">
+							<span class="glyphicon glyphicon-link card-text-icon"></span>
+							<a target="_blank" rel="noopener noreferrer" id="info-card-classlink" class="card-text-header"> - </a>
+							<span class="glyphicon glyphicon-none card-text-icon"></span>
+						</div>
+						<div id="info-card-classtime-div">
+							<span class="glyphicon glyphicon-time card-text-icon"></span>
+							<p id="info-card-classtime" class="card-text-header">Пн-Пт: 09:00 - 18:00</p>
+						</div>
+						<div id="info-card-share-div" onclick="ShareLink();">
+							<div class="center-block" style="width:auto">
+								<span class="glyphicon glyphicon-share card-text-icon"></span>
+								<p id="info-card-share" class="card-text-header">Поделиться</p>
+								<span id="spanShareOK" class="label label-default invisible">Скопировано</span>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<small>Последнее обновление: 29.07.2018(beta)</small>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="mobileSearchMenu" class="modal fade "  tabindex="-1" role="dialog" aria-labelledby="mobileSearchMenu" aria-hidden="true">
+			
+			<div id="mobileSearchMenu_inside" class="container">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#mobileSearchMenu_Aud">Аудитория</a></li>
+					<li><a data-toggle="tab" href="#mobileSearchMenu_Path">Маршрут</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="mobileSearchMenu_Aud" class="tab-pane fade in active">
+						<form class="hidden-md hidden-lg" role="search" id="path_card_audit" onsubmit="event.preventDefault(); FindAudDesktop(false); return false;">
+							<div class="container" style=" padding-top: 15px; padding-bottom: 45px;">
+								<div class="form-input-material">
+									<label>
+										<input class="clearable" type="text" autocomplete="off" required id="input_aud_dstRoomBox">
+										<span class="placeholder">Аудитория</span>
+									</label>
+									<p id="validError_audMobile_dst" class="validationError">Аудитория не найдена</p>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-default center-block" style="margin-top:10px">Найти!</button>
+						</form>
+					</div>
+					<div id="mobileSearchMenu_Path" class="tab-pane fade">
+						<form class="hidden-md hidden-lg" role="search" id="path_card_path" onsubmit="event.preventDefault(); FindPathDesktop(false); return false;">
+							<div class="container">
+								<div class="form-input-material">
+									<label>
+										<input class="clearable" type="text" autocomplete="off" required id="input_path_srcRoomBox">
+										<span class="placeholder">Откуда</span>
+									</label>
+									<p id="validError_pathMobile_src" class="validationError">Аудитория не найдена</p>
+								</div>
+								<div class="form-input-material">
+									<label>
+										<input class="clearable" type="text" autocomplete="off" required id="input_path_dstRoomBox">
+										<span class="placeholder">Куда</span>
+									</label>
+									<p id="validError_pathMobile_dst" class="validationError">Аудитория не найдена</p>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-default center-block" style="margin-top:10px" >Поехали!</button>	
+						</form>
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<div id="mainDiv" style="width: 100%;float:left;height: 100%;">
+			<!--  Place for map  -->
+			
+			<!--
+			<div class="mastfoot">
+				<div class="inner">
+					<p>Copyright &copy; <a href="http://sputnik.guap.ru">Sputnik SUAI</a>| All right reserved.</p>
+				</div>
+			</div>
+			-->
+		</div>
+		<div id="badgesDownload" class="hidden-sm hidden-xs">
+			<a href='https://play.google.com/store/apps/details?id=ru.purecreation.suainavigation&hl=ru&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+				<img style="height:40px;display:inline-block" class="img-responsive" alt='Доступно в Google Play' src='https://play.google.com/intl/en/badges/images/generic/ru_badge_web_generic.png'/>
+			</a>
+			<a href="https://itunes.apple.com/ru/app/%D1%81%D0%BF%D1%83%D1%82%D0%BD%D0%B8%D0%BA-%D0%B3%D1%83%D0%B0%D0%BF/id1234040508?mt=8">
+				<img style="height:40px;padding-top:6px;padding-bottom:6px;display:inline-block" class="img-responsive" alt='Доступно в iTunes' src='https://linkmaker.itunes.apple.com/assets/shared/badges/ru-ru/appstore-lrg.svg'/>
+			</a>
+		</div>
+		<button type="button" class="btn btn-circle hidden-md hidden-lg" data-toggle="modal" data-target="#mobileSearchMenu"><i class="glyphicon glyphicon-search"></i></button>
+
+		<link rel="stylesheet" type="text/css" href= "css/main.css"/>
+		<link rel="stylesheet" type="text/css" href= "css/desktopMain.css"/>
+		<!-- Js -->
+		<script src="../js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="../js/vendor/jquery-1.10.2.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<!-- custom js -->
+		<script async src="js/interaction-web.js"></script>
+		<script async src="js/descriptions.js"></script>
+		<script async src="js/pathFinder.js"></script>
+		<script async src="js/main.js"></script>
+
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript" >
+			(function (d, w, c) {
+				(w[c] = w[c] || []).push(function() {
+					try {
+						w.yaCounter45787290 = new Ya.Metrika({
+							id:45787290,
+							clickmap:true,
+							trackLinks:true,
+							accurateTrackBounce:true,
+							webvisor:true,
+							trackHash:true
+						});
+					} catch(e) { }
+				});
+
+				var n = d.getElementsByTagName("script")[0],
+					s = d.createElement("script"),
+					f = function () { n.parentNode.insertBefore(s, n); };
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+				if (w.opera == "[object Opera]") {
+					d.addEventListener("DOMContentLoaded", f, false);
+				} else { f(); }
+			})(document, window, "yandex_metrika_callbacks");
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/45787290" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+
+		<!-- icons -->
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i1.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i2.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i3.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i4.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i5.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i6.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i7.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/i8.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/fdpo.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/fspo.png" />
+		<link rel="prefetch" href="http://sputnik.guap.ru/nav/resources/icons/ibmp.png" />
+	</body>
+	
+	
+</html>
