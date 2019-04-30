@@ -1,4 +1,4 @@
-
+![GitHub release](https://img.shields.io/github/release/serge2051/SUAI-Navigation.svg?style=popout)
 [![Javascript](https://badges.frapsoft.com/javascript/code/javascript.svg?v=101)](https://github.com/ellerbrock/javascript-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # SUAI Navigation
